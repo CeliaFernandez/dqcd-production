@@ -4,7 +4,7 @@ p = "Configuration/GenProduction/data/"
 files = os.listdir(p)
 
 cmnd = """
-    cmsDriver.py Configuration/GenProduction/python/{name}_cfi.py --python_filename 2022/gen_{name}_cfg.py --eventcontent RAWSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN --fileout file:gen_{name}.root --conditions 124X_mcRun3_2022_realistic_v12 --beamspot Realistic25ns13p6TeVEarly2022Collision --step GEN --geometry DB:Extended --era Run3 --no_exec --mc -n -1
+    cmsDriver.py Configuration/GenProduction/python/{name}_cfi.py --python_filename 2022-final/gen_{name}_cfg.py --eventcontent RAWSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN --fileout file:gen_{name}.root --conditions 124X_mcRun3_2022_realistic_v12 --beamspot Realistic25ns13p6TeVEarly2022Collision --step GEN --geometry DB:Extended --era Run3 --no_exec --mc -n -1
 """
 
 crab = """
@@ -17,7 +17,7 @@ config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.JobType.pluginName = 'PrivateMC'
-config.JobType.psetName = '2022/gen_{name}_cfg.py'
+config.JobType.psetName = '2022-final/gen_{name}_cfg.py'
 
 config.Data.outputPrimaryDataset = '{name}'
 config.Data.splitting = 'EventBased'
@@ -25,7 +25,7 @@ config.Data.unitsPerJob = 1000
 NJOBS = 2000
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 
-config.Data.outLFNDirBase = '/store/user/$USER/samples/'
+config.Data.outLFNDirBase = '/store/user/mmasciov/dqcd-samples/'
 config.Data.publication = True
 config.Data.outputDatasetTag = '{name}_2022'
 
@@ -77,14 +77,14 @@ files = [
 
 for f in files:
     name = f.split(".")[0]
-    if os.path.exists(f"2022/{name}/crab_{name}"):
+    if os.path.exists(f"2022-final/{name}/crab_{name}"):
         continue
     print("Launching", name)
     # continue
     # print(cmnd.format(name=name))
     # print(name)
     os.system(cmnd.format(name=name))
-    with open("2022/crab_submit_%s.py" % name, "w+") as f:
+    with open("2022-final/crab_submit_%s.py" % name, "w+") as f:
         f.write(crab.format(name=name))
-    os.system("crab submit 2022/crab_submit_%s.py" % name)
+    os.system("crab submit 2022-final/crab_submit_%s.py" % name)
 

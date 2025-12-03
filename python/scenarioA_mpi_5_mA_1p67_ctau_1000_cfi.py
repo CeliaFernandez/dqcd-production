@@ -89,15 +89,5 @@ MuMuFilter = cms.EDFilter("MCParticlePairFilter",
     ParticleID1 = cms.untracked.vint32(13,-13),
 )
 
-process.llphitomumukingenfilter = cms.EDFilter("PythiaDauVFilter",
-    DaughterIDs = cms.untracked.vint32(13, -13),
-    MaxEta = cms.untracked.vdouble(3.0, 3.0),
-    MinEta = cms.untracked.vdouble(-3.0, -3.0),
-    MinPt = cms.untracked.vdouble(1.0, 1.0),
-    NumberDaughters = cms.untracked.int32(2),
-    ParticleID = cms.untracked.int32(9900015),
-    verbose = cms.untracked.int32(3)
-)
-
 #ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
 ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)

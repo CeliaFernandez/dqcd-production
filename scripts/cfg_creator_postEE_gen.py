@@ -17,7 +17,7 @@ config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.JobType.pluginName = 'PrivateMC'
-config.JobType.psetName = '2022/gen_{name}_cfg.py'
+config.JobType.psetName = '2022postEE-final/gen_{name}_cfg.py'
 
 config.Data.outputPrimaryDataset = '{name}'
 config.Data.splitting = 'EventBased'
@@ -25,7 +25,7 @@ config.Data.unitsPerJob = 1000
 NJOBS = 2000
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 
-config.Data.outLFNDirBase = '/store/user/$USER/samples/'
+config.Data.outLFNDirBase = '/store/user/mmasciov/dqcd-samples/'
 config.Data.publication = True
 config.Data.outputDatasetTag = '{name}_2022postEE'
 
@@ -74,6 +74,7 @@ files = [
     #
 ]
 
+#files = ["scenarioB1_mpi_12_mA_1p20_ctau_1000.slha"]
 
 
 for f in files:
