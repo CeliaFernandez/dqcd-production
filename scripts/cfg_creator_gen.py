@@ -12,7 +12,7 @@ from CRABClient.UserUtilities import config
 config = config()
 
 config.General.requestName = '{name}'
-config.General.workArea = '2022/{name}'
+config.General.workArea = '2022-final/{name}'
 config.General.transferOutputs = True
 config.General.transferLogs = True
 
@@ -22,86 +22,56 @@ config.JobType.psetName = '2022/gen_{name}_cfg.py'
 config.Data.outputPrimaryDataset = '{name}'
 config.Data.splitting = 'EventBased'
 config.Data.unitsPerJob = 1000
-NJOBS = 100
+NJOBS = 2000
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 
-config.Data.outLFNDirBase = '/store/user/jleonhol/samples/'
+config.Data.outLFNDirBase = '/store/user/$USER/samples/'
 config.Data.publication = True
 config.Data.outputDatasetTag = '{name}_2022'
 
-config.Site.storageSite = 'T2_UK_London_IC'
+config.Site.blacklist = ['T2_US_MIT']
+config.Site.whitelist = ['T2_US_Wisconsin','T2_US_Florida', 'T2_US_UCSD']
+config.Site.storageSite = 'T2_US_UCSD'
 """
 
-
 files = [
-  "scenarioA_mpi_10_mA_1p00_ctau_0p1.slha",
-  "scenarioA_mpi_10_mA_1p00_ctau_10.slha",
-  "scenarioA_mpi_10_mA_1p00_ctau_100.slha",
-  "scenarioA_mpi_10_mA_1p00_ctau_1p0.slha",
-  "scenarioA_mpi_10_mA_3p33_ctau_0p1.slha",
-  "scenarioA_mpi_10_mA_3p33_ctau_10.slha",
-  "scenarioA_mpi_10_mA_3p33_ctau_100.slha",
-  "scenarioA_mpi_10_mA_3p33_ctau_1p0.slha",
-  "scenarioA_mpi_1_mA_0p33_ctau_0p1.slha",
-  "scenarioA_mpi_1_mA_0p33_ctau_10.slha",
-  "scenarioA_mpi_1_mA_0p33_ctau_100.slha",
-  "scenarioA_mpi_1_mA_0p33_ctau_1p0.slha",
-  "scenarioA_mpi_2_mA_0p67_ctau_0p1.slha",
-  "scenarioA_mpi_2_mA_0p67_ctau_10.slha",
-  "scenarioA_mpi_2_mA_0p67_ctau_100.slha",
-  "scenarioA_mpi_2_mA_0p67_ctau_1p0.slha",
-  "scenarioA_mpi_4_mA_0p40_ctau_0p1.slha",
-  "scenarioA_mpi_4_mA_0p40_ctau_10.slha",
-  "scenarioA_mpi_4_mA_0p40_ctau_100.slha",
-  "scenarioA_mpi_4_mA_0p40_ctau_1p0.slha",
-  "scenarioA_mpi_4_mA_1p33_ctau_0p1.slha",
-  "scenarioA_mpi_4_mA_1p33_ctau_10.slha",
-  "scenarioA_mpi_4_mA_1p33_ctau_100.slha",
-  "scenarioA_mpi_4_mA_1p33_ctau_1p0.slha",
-  "scenarioB1_mpi_1_mA_0p33_ctau_0p1.slha",
-  "scenarioB1_mpi_1_mA_0p33_ctau_10.slha",
-  "scenarioB1_mpi_1_mA_0p33_ctau_100.slha",
-  "scenarioB1_mpi_1_mA_0p33_ctau_1p0.slha",
-  "scenarioB1_mpi_2_mA_0p40_ctau_0p1.slha",
-  "scenarioB1_mpi_2_mA_0p40_ctau_10.slha",
-  "scenarioB1_mpi_2_mA_0p40_ctau_100.slha",
-  "scenarioB1_mpi_2_mA_0p40_ctau_1p0.slha",
-  "scenarioB1_mpi_2_mA_0p67_ctau_0p1.slha",
-  "scenarioB1_mpi_2_mA_0p67_ctau_10.slha",
-  "scenarioB1_mpi_2_mA_0p67_ctau_100.slha",
-  "scenarioB1_mpi_2_mA_0p67_ctau_1p0.slha",
-  "scenarioB1_mpi_4_mA_0p80_ctau_0p1.slha",
-  "scenarioB1_mpi_4_mA_0p80_ctau_10.slha",
-  "scenarioB1_mpi_4_mA_0p80_ctau_100.slha",
-  "scenarioB1_mpi_4_mA_0p80_ctau_1p0.slha",
-  "scenarioB1_mpi_4_mA_1p33_ctau_0p1.slha",
-  "scenarioB1_mpi_4_mA_1p33_ctau_10.slha",
-  "scenarioB1_mpi_4_mA_1p33_ctau_100.slha",
-  "scenarioB1_mpi_4_mA_1p33_ctau_1p0.slha",
-  "scenarioB2_mpi_1_mA_0p60_ctau_0p1.slha",
-  "scenarioB2_mpi_1_mA_0p60_ctau_10.slha",
-  "scenarioB2_mpi_1_mA_0p60_ctau_100.slha",
-  "scenarioB2_mpi_1_mA_0p60_ctau_1p0.slha",
-  "scenarioB2_mpi_2_mA_1p10_ctau_0p1.slha",
-  "scenarioB2_mpi_2_mA_1p10_ctau_10.slha",
-  "scenarioB2_mpi_2_mA_1p10_ctau_100.slha",
-  "scenarioB2_mpi_2_mA_1p10_ctau_1p0.slha",
-  "scenarioB2_mpi_4_mA_2p10_ctau_0p1.slha",
-  "scenarioB2_mpi_4_mA_2p10_ctau_10.slha",
-  "scenarioB2_mpi_4_mA_2p10_ctau_100.slha",
-  "scenarioB2_mpi_4_mA_2p10_ctau_1p0.slha",
-  "scenarioC_mpi_10_mA_8p00_ctau_0p1.slha",
-  "scenarioC_mpi_10_mA_8p00_ctau_10.slha",
-  "scenarioC_mpi_10_mA_8p00_ctau_100.slha",
-  "scenarioC_mpi_10_mA_8p00_ctau_1p0.slha",
-  "scenarioC_mpi_2_mA_1p60_ctau_0p1.slha",
-  "scenarioC_mpi_2_mA_1p60_ctau_10.slha",
-  "scenarioC_mpi_2_mA_1p60_ctau_100.slha",
-  "scenarioC_mpi_2_mA_1p60_ctau_1p0.slha",
-  "scenarioC_mpi_4_mA_3p20_ctau_0p1.slha",
-  "scenarioC_mpi_4_mA_3p20_ctau_10.slha",
-  "scenarioC_mpi_4_mA_3p20_ctau_100.slha",
-  "scenarioC_mpi_4_mA_3p20_ctau_1p0.slha",
+    #"scenarioA_mpi_2_mA_0p67_ctau_250p0.slha",
+    #"scenarioA_mpi_2_mA_0p67_ctau_600p0.slha",
+    "scenarioA_mpi_2_mA_0p67_ctau_1000.slha",
+    #"scenarioA_mpi_4_mA_1p33_ctau_250p0.slha",
+    #"scenarioA_mpi_4_mA_1p33_ctau_600p0.slha",
+    "scenarioA_mpi_4_mA_1p33_ctau_1000.slha",
+    #"scenarioA_mpi_5_mA_1p67_ctau_250p0.slha",
+    #"scenarioA_mpi_5_mA_1p67_ctau_600p0.slha",
+    "scenarioA_mpi_5_mA_1p67_ctau_1000.slha",
+    #"scenarioA_mpi_6_mA_2_ctau_250p0.slha",
+    #"scenarioA_mpi_6_mA_2_ctau_600p0.slha",
+    "scenarioA_mpi_6_mA_2_ctau_1000.slha",
+    #"scenarioA_mpi_7p50_mA_2p50_ctau_250p0.slha",
+    #"scenarioA_mpi_7p50_mA_2p50_ctau_600p0.slha",
+    "scenarioA_mpi_7p50_mA_2p50_ctau_1000.slha",
+    #"scenarioA_mpi_12_mA_1p20_ctau_250p0.slha",
+    #"scenarioA_mpi_12_mA_1p20_ctau_600p0.slha",
+    "scenarioA_mpi_12_mA_1p20_ctau_1000.slha",
+    #"scenarioB1_mpi_2_mA_0p67_ctau_250p0.slha",
+    #"scenarioB1_mpi_2_mA_0p67_ctau_600p0.slha",
+    "scenarioB1_mpi_2_mA_0p67_ctau_1000.slha",
+    #"scenarioB1_mpi_4_mA_1p33_ctau_250p0.slha",
+    #"scenarioB1_mpi_4_mA_1p33_ctau_600p0.slha",
+    "scenarioB1_mpi_4_mA_1p33_ctau_1000.slha",
+    #"scenarioB1_mpi_5_mA_1p67_ctau_250p0.slha",
+    #"scenarioB1_mpi_5_mA_1p67_ctau_600p0.slha",
+    "scenarioB1_mpi_5_mA_1p67_ctau_1000.slha",
+    #"scenarioB1_mpi_6_mA_2_ctau_250p0.slha",
+    #"scenarioB1_mpi_6_mA_2_ctau_600p0.slha",
+    "scenarioB1_mpi_6_mA_2_ctau_1000.slha",
+    #"scenarioB1_mpi_7p50_mA_2p50_ctau_250p0.slha",
+    #"scenarioB1_mpi_7p50_mA_2p50_ctau_600p0.slha",
+    "scenarioB1_mpi_7p50_mA_2p50_ctau_1000.slha",
+    #"scenarioB1_mpi_12_mA_1p20_ctau_250p0.slha",
+    #"scenarioB1_mpi_12_mA_1p20_ctau_600p0.slha",
+    "scenarioB1_mpi_12_mA_1p20_ctau_1000.slha",
+    #
 ]
 
 
