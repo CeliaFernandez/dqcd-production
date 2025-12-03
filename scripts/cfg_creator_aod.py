@@ -53,5 +53,5 @@ for name, dataset in datasets.items():
     #os.system(cmnd.format(name=name))
     with open("2022/crab_submit_%s.py" % name, "w+") as f:
         f.write(crab.format(name=name, dataset=dataset))
-    #os.system("crab submit 2022/crab_submit_%s.py" % name)
+    os.system("crab submit 2022/crab_submit_%s.py" % name)
 
